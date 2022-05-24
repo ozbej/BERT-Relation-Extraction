@@ -27,19 +27,19 @@ def process_text(text, mode='train'):
     sents, relations, comments, blanks = [], [], [], []
     for i in range(int(len(text)/4)):
         sent = text[4*i]
-        relation = text[4*i + 1]
+        relation = text[4*i + 1].replace("\n", "")
         comment = text[4*i + 2]
         blank = text[4*i + 3]
         
         # check entries
-        if mode == 'train':
+        """if mode == 'train':
             assert int(re.match("^\d+", sent)[0]) == (i + 1)
         else:
-            assert (int(re.match("^\d+", sent)[0]) - 8000) == (i + 1)
+            assert (int(re.match("^\d+", sent)[0]) - 8000) == (i + 1)"""
         assert re.match("^Comment", comment)
         assert len(blank) == 1
         
-        sent = re.findall("\"(.+)\"", sent)[0]
+        #sent = re.findall("\"(.+)\"", sent)[0]
         sent = re.sub('<e1>', '[E1]', sent)
         sent = re.sub('</e1>', '[/E1]', sent)
         sent = re.sub('<e2>', '[E2]', sent)
@@ -85,6 +85,7 @@ class Relations_Mapper(object):
         logger.info("Mapping relations to IDs...")
         self.n_classes = 0
         for relation in tqdm(relations):
+            relation = relation.replace("\n", "")
             if relation not in self.rel2idx.keys():
                 self.rel2idx[relation] = self.n_classes
                 self.n_classes += 1

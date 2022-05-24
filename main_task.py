@@ -6,7 +6,7 @@ Created on Mon Dec  2 17:40:16 2019
 @author: weetee
 """
 from src.tasks.trainer import train_and_fit
-from src.tasks.infer import infer_from_trained, FewRel
+from src.tasks.infer import infer_from_trained, FewRel, infer_from_termframe
 import logging
 from argparse import ArgumentParser
 
@@ -20,11 +20,13 @@ logger = logging.getLogger('__file__')
 
 if __name__ == "__main__":
     parser = ArgumentParser()
-    parser.add_argument("--task", type=str, default='semeval', help='semeval, fewrel')
+    parser.add_argument("--task", type=str, default='semeval', help='semeval, fewrel, termframe')
     parser.add_argument("--train_data", type=str, default='./data/SemEval2010_task8_all_data/SemEval2010_task8_training/TRAIN_FILE.TXT', \
                         help="training data .txt file path")
     parser.add_argument("--test_data", type=str, default='./data/SemEval2010_task8_all_data/SemEval2010_task8_testing_keys/TEST_FILE_FULL.TXT', \
                         help="test data .txt file path")
+    parser.add_argument("--infer_data", type=str, default='', \
+                        help="infer data .txt file path")
     parser.add_argument("--use_pretrained_blanks", type=int, default=0, help="0: Don't use pre-trained blanks model, 1: use pre-trained blanks model")
     parser.add_argument("--num_classes", type=int, default=19, help='number of relation classes')
     parser.add_argument("--batch_size", type=int, default=32, help="Training batch size")
@@ -51,16 +53,7 @@ if __name__ == "__main__":
         
     if (args.infer == 1) and (args.task != 'fewrel'):
         inferer = infer_from_trained(args, detect_entities=True)
-        test = "The surprise [E1]visit[/E1] caused a [E2]frenzy[/E2] on the already chaotic trading floor."
-        inferer.infer_sentence(test, detect_entities=False)
-        test2 = "After eating the chicken, he developed a sore throat the next morning."
-        inferer.infer_sentence(test2, detect_entities=True)
-        
-        while True:
-            sent = input("Type input sentence ('quit' or 'exit' to terminate):\n")
-            if sent.lower() in ['quit', 'exit']:
-                break
-            inferer.infer_sentence(sent, detect_entities=False)
+        infer_from_termframe(args.infer_data, inferer, detect_entities=False, annotated=True)
     
     if args.task == 'fewrel':
         fewrel = FewRel(args)

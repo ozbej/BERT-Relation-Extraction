@@ -16,6 +16,8 @@ from itertools import permutations
 from tqdm import tqdm
 from .preprocessing_funcs import load_dataloaders
 from ..misc import save_as_pickle
+from sklearn.metrics import f1_score
+from operator import itemgetter
 
 import logging
 
@@ -30,6 +32,126 @@ def load_pickle(filename):
     with open(completeName, 'rb') as pkl_file:
         data = pickle.load(pkl_file)
     return data
+
+rel2idx = {
+    "HAS_CAUSE(e1,e2)": 1,
+    "HAS_CAUSE(e2,e1)": 2,
+    "HAS_RESULT(e1,e2)": 3,
+    "HAS_RESULT(e2,e1)": 4,
+    "HAS_FORM(e1,e2)": 5,
+    "HAS_FORM(e2,e1)": 6,
+    "HAS_LOCATION(e1,e2)": 7,
+    "HAS_LOCATION(e2,e1)": 8,
+    "HAS_ATTRIBUTE(e1,e2)": 9,
+    "HAS_ATTRIBUTE(e2,e1)": 10,
+    "DEFINED_AS(e1,e2)": 11,
+    "DEFINED_AS(e2,e1)": 12,
+}
+
+class infer_from_termframe(object):
+    def __init__(self, input_file, inferer, detect_entities=False, annotated=True):
+        self.input_file = input_file
+        self.inferer = inferer
+        self.detect_entities = detect_entities
+        self.annotated = annotated
+
+        if self.annotated:
+            pass
+        else:
+            self.infer_unnanotated()
+
+    def infer_unnanotated(self):
+        """
+        Evaluate termframe results (unannotated)
+        """
+        f_in = open(self.input_file, "r", encoding="utf-8")
+
+        all_cases = 0
+
+        while True:
+            sentence = f_in.readline().replace("\n", "")
+            if not sentence: break
+
+            sentence = sentence.split("\t")[1]
+
+            predicted = self.inferer.infer_sentence(sentence, detect_entities=True).strip(" \n")
+
+            print("Sentence: %s" % sentence)
+            print("Predicted: %s" % predicted)
+            print()
+
+            all_cases += 1
+
+        print("Predicted %d cases" % (all_cases))
+
+    def infer_annotated(self):
+        """
+        Evaluate termframe results (annotated)
+        """
+        f_in = open(self.input_file, "r", encoding="utf-8")
+
+        all_cases = 0
+        correct_cases = 0
+        correct_cases_stripped = 0
+
+        y_true = list()
+        y_pred = list()
+
+        while True:
+            sentence = f_in.readline().replace("\n", "")
+            sentence = sentence.replace("<e1>", "[E1]")
+            sentence = sentence.replace("</e1>", "[/E1]")
+            sentence = sentence.replace("<e2>", "[E2]")
+            sentence = sentence.replace("</e2>", "[/E2]")
+            if self.detect_entities:
+                sentence = sentence.replace("[E1]", "")
+                sentence = sentence.replace("[/E1]", "")
+                sentence = sentence.replace("[E2]", "")
+                sentence = sentence.replace("[/E2]", "")
+            relations = f_in.readline()
+            if not sentence or not relations: break
+            f_in.readline()
+            f_in.readline()
+
+            sentence = sentence.split("\t")[1]
+
+            predicted, _ = self.inferer.infer_sentence(sentence, detect_entities=self.detect_entities)
+
+            predicted.strip(" \n")
+
+            # Filter relations (remove newlines and spaces)
+            relations = [relation.strip(" \n") for relation in relations.split(" ")]
+
+            print("Sentence: %s" % sentence)
+            print("Predicted: %s" % predicted)
+            print("Real: %s" % relations)
+            print()
+
+            y_pred.append(rel2idx[predicted])
+
+            # Count correct predictions (both relations and entity order)
+            if predicted in relations:
+                y_true.append(rel2idx[predicted])
+                correct_cases += 1
+            else:
+                y_true.append(0)
+
+            relations_stripped = list()
+            predicted_stripped = re.sub(r'\(.*\)\n*', '', predicted)
+
+            relations_stripped = [re.sub(r'\(.*\)\n*', '', relation) for relation in relations]
+
+            # Count correct predictions (only relations)
+            if predicted_stripped in relations_stripped:
+                correct_cases_stripped += 1
+
+            all_cases += 1
+
+        f1 = f1_score(y_true, y_pred, average="macro")
+
+        print("Accuracy (relations + entity order): %.3f (%d/%d)" % (correct_cases/all_cases, correct_cases, all_cases))
+        print("Accuracy (relations): %.3f (%d/%d) " % (correct_cases_stripped/all_cases, correct_cases_stripped, all_cases))
+        print("F1: %.3f" % f1)
 
 class infer_from_trained(object):
     def __init__(self, args=None, detect_entities=False):
@@ -188,26 +310,31 @@ class infer_from_trained(object):
         return e1_e2_start
     
     def infer_one_sentence(self, sentence):
-        self.net.eval()
-        tokenized = self.tokenizer.encode(sentence); #print(tokenized)
-        e1_e2_start = self.get_e1e2_start(tokenized); #print(e1_e2_start)
-        tokenized = torch.LongTensor(tokenized).unsqueeze(0)
-        e1_e2_start = torch.LongTensor(e1_e2_start).unsqueeze(0)
-        attention_mask = (tokenized != self.pad_id).float()
-        token_type_ids = torch.zeros((tokenized.shape[0], tokenized.shape[1])).long()
-        
-        if self.cuda:
-            tokenized = tokenized.cuda()
-            attention_mask = attention_mask.cuda()
-            token_type_ids = token_type_ids.cuda()
-        
-        with torch.no_grad():
-            classification_logits = self.net(tokenized, token_type_ids=token_type_ids, attention_mask=attention_mask, Q=None,\
-                                        e1_e2_start=e1_e2_start)
-            predicted = torch.softmax(classification_logits, dim=1).max(1)[1].item()
-        print("Sentence: ", sentence)
-        print("Predicted: ", self.rm.idx2rel[predicted].strip(), '\n')
-        return predicted
+        try:
+            self.net.eval()
+            tokenized = self.tokenizer.encode(sentence); #print(tokenized)
+            e1_e2_start = self.get_e1e2_start(tokenized); #print(e1_e2_start)
+            tokenized = torch.LongTensor(tokenized).unsqueeze(0)
+            e1_e2_start = torch.LongTensor(e1_e2_start).unsqueeze(0)
+            attention_mask = (tokenized != self.pad_id).float()
+            token_type_ids = torch.zeros((tokenized.shape[0], tokenized.shape[1])).long()
+            
+            if self.cuda:
+                tokenized = tokenized.cuda()
+                attention_mask = attention_mask.cuda()
+                token_type_ids = token_type_ids.cuda()
+            
+            with torch.no_grad():
+                classification_logits = self.net(tokenized, token_type_ids=token_type_ids, attention_mask=attention_mask, Q=None,\
+                                            e1_e2_start=e1_e2_start)
+                predicted_item = torch.softmax(classification_logits, dim=1).max(1)[1].item()
+                conf_score = predicted_item[0].item()
+                predicted = predicted_item[1].item()
+            return self.rm.idx2rel[predicted].strip(), conf_score
+        except:
+            return None, None
+        #print("Sentence: ", sentence)
+        #print("Predicted: ", self.rm.idx2rel[predicted].strip(), '\n')
     
     def infer_sentence(self, sentence, detect_entities=False):
         if detect_entities:
@@ -216,8 +343,9 @@ class infer_from_trained(object):
                 preds = []
                 for sent in sentences:
                     pred = self.infer_one_sentence(sent)
-                    preds.append(pred)
-                return preds
+                    if pred[0] is not None and pred[1] is not None:
+                        preds.append(pred)
+                return max(preds,key=itemgetter(1))
         else:
             return self.infer_one_sentence(sentence)
 
