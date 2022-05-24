@@ -1,0 +1,4 @@
+spacy
+seqeval
+boto3
+transformers
