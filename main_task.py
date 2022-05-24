@@ -45,6 +45,8 @@ if __name__ == "__main__":
                                                                                     For BioBERT: 'bert-base-uncased' (biobert_v1.1_pubmed)")
     parser.add_argument("--train", type=int, default=1, help="0: Don't train, 1: train")
     parser.add_argument("--infer", type=int, default=1, help="0: Don't infer, 1: Infer")
+    parser.add_argument("--detect_entities", type=int, default=0, help="0: Don't detect entities, 1: Detect entities")
+    parser.add_argument("--annotated", type=int, default=1, help="0: Data is not annotated, 1: Data is annotated")
     
     args = parser.parse_args()
     
@@ -53,7 +55,7 @@ if __name__ == "__main__":
         
     if (args.infer == 1) and (args.task != 'fewrel'):
         inferer = infer_from_trained(args, detect_entities=True)
-        infer_from_termframe(args.infer_data, inferer, detect_entities=False, annotated=True)
+        infer_from_termframe(args.infer_data, inferer, detect_entities=args.detect_entities, annotated=args.annotated)
     
     if args.task == 'fewrel':
         fewrel = FewRel(args)

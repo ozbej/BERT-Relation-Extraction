@@ -56,7 +56,7 @@ class infer_from_termframe(object):
         self.annotated = annotated
 
         if self.annotated:
-            pass
+            self.infer_annotated()
         else:
             self.infer_unnanotated()
 
@@ -327,7 +327,7 @@ class infer_from_trained(object):
             with torch.no_grad():
                 classification_logits = self.net(tokenized, token_type_ids=token_type_ids, attention_mask=attention_mask, Q=None,\
                                             e1_e2_start=e1_e2_start)
-                predicted_item = torch.softmax(classification_logits, dim=1).max(1)[1].item()
+                predicted_item = torch.softmax(classification_logits, dim=1).max(1)
                 conf_score = predicted_item[0].item()
                 predicted = predicted_item[1].item()
             return self.rm.idx2rel[predicted].strip(), conf_score
