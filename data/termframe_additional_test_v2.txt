@@ -1,0 +1,296 @@
+0	[E1]Erosion[/E1] is a [E2]hydraulic action[/E2], derived from the energy of running water.
+HAS_CAUSE(e1,e2)
+Comment:
+
+1	[E1]Basin morphometry[/E1] is a [E2]function[/E2] of stream order and drainage patterns.
+DEFINED_AS(e1,e2)
+Comment:
+
+2	An [E1]iceberg[/E1] is a [E2]piece of ice[/E2] that has broken from an ice shelf and that floats in the Ocean.
+HAS_LOCATION(e1,e2) HAS_CAUSE(e1,e2)
+Comment:
+
+3	[E1]Abrasion[/E1] is a particle-by-particle erosion [E2]process[/E2] and produces large amounts of silt-sized (0.002 - 0.0625 mm) sediments.
+HAS_RESULT(e1,e2) HAS_ATTRIBUTE(e1,e2)
+Comment:
+
+6	A [E1]periglacial environment[/E1] is defined as any [E2]place[/E2] where the geomorphic processes related to the freezing of water occurs.
+HAS_LOCATION(e1,e2) DEFINED_AS(e1,e2)
+Comment:
+
+8	An [E1]isolated system[/E1] is a [E2]system[/E2] that is completely cut off from its surroundings and that cannot therefore import or export matter or energy.
+HAS_FORM(e1,e2) HAS_RESULT(e1,e2)
+Comment:
+
+9	A [E1]fault[/E1] is a [E2]fracture[/E2] along which movement associated with an earthquake has taken place, one side of the fault moving differentially to the other side.
+HAS_RESULT(e1,e2) HAS_ATTRIBUTE(e1,e2)
+Comment:
+
+10	[E1]Honeycomb weathering[/E1] is a term used to describe numerous small pits or alveoli, no more than a few centimetres wide and deep, separated by an intricate network of narrow walls and resembling a honeycomb. [E2]weathering[/E2]
+HAS_FORM(e1,e2) HAS_RESULT(e1,e2)
+Comment:
+
+11	[E1]Tectonic denudation[/E1] is a term that describes the [E2]unloading[/E2] of mountains by gravity sliding and spreading.
+HAS_CAUSE(e1,e2)
+Comment:
+
+12	[E1]Permafrost[/E1] is [E2]soil[/E2] or rock that remains frozen for two or more consecutive years.
+HAS_FORM(e1,e2)
+Comment:
+
+13	A [E1]ground moraine[/E1] is a [E2]blanket[/E2] of mixed glacial sediments - mainly tills and other diamictons - formed beneath a glacier.
+HAS_LOCATION(e1,e2)
+Comment:
+
+14	A [E1]coral reef[/E1] is a [E2]ridge[/E2] or mound built of the skeletal remains of generations of coral animals, upon which grow living coral polyps.
+HAS_CAUSE(e1,e2)
+Comment:
+
+16	[E1]Weathering[/E1] is a [E2]process[/E2] of a slow continuous breakdown of rocks into smaller particles that are in equilibrium with the prevailing environment
+HAS_RESULT(e1,e2)
+Comment:
+
+21	A [E1]profilometer[/E1] is a [E2]comb[/E2] equipped with fine, closely spaced teeth that advance or retreat through the housing when depressed against a rough surface.
+HAS_ATTRIBUTE(e1,e2)
+Comment:
+
+22	[E1]Amino-acid geochronology[/E1] [E2]is a[/E2] relative-age dating technique based on the premise that proteins in bones and shells are affected by a number of chemical reactions that are partly time-dependent.
+DEFINED_AS(e1,e2) HAS_ATTRIBUTE(e1,e2)
+Comment:
+
+23	A [E1]suture[/E1] is a [E2]surface[/E2] or zone separating two non-subductable pieces of crust that are juxtaposed following disappearance of an intervening ocean.
+HAS_CAUSE(e1,e2)
+Comment:
+
+24	A [E1]paleoseismic record[/E1] is a [E2]record[/E2] of large or great earthquakes (because geologic evidence of small and moderate-sized earthquakes is rarely created or preserved near the surface).
+HAS_CAUSE(e1,e2) HAS_ATTRIBUTE(e1,e2)
+Comment:
+
+26	[E1]Sills[/E1] are concordant [E2]intrusions[/E2] and frequently form resistant, tabular bands within sedimentary beds, although they may cross beds to spread along other bedding planes.
+HAS_LOCATION(e1,e2) HAS_FORM(e1,e2)
+Comment:
+
+27	[E1]Laccoliths[/E1] are [E2]sills[/E2] that have thickened to produce domes.
+HAS_RESULT(e1,e2)
+Comment:
+
+28	[E1]Phacoliths[/E1] are lens-shaped [E2]masses[/E2] seated in anticlinal crests and synclinal troughs.
+HAS_LOCATION(e1,e2) HAS_FORM(e1,e2)
+Comment:
+
+31	[E1]Ophiolites[/E1] are [E2]sections[/E2] of the earth's oceanic crust and the underlying upper mantle that have been uplifted or emplaced and exposed within the continental crustal rocks.
+HAS_LOCATION(e1,e2) HAS_CAUSE(e1,e2)
+Comment:
+
+32	[E1]Collisions[/E1] are [E2]zones[/E2] where a continent, island arc, oceanic plateau, or other thick piece of crust on a downgoing plate arrives at a subduction zone.
+HAS_LOCATION(e1,e2)
+Comment:
+
+34	[E1]Landslides[/E1] are disequilibrium [E2]landforms[/E2] that change through time more rapidly than surrounding terrain.
+HAS_RESULT(e1,e2) HAS_ATTRIBUTE(e1,e2)
+Comment:
+
+36	[E1]Nunataks[/E1] are [E2]rock outcrops[/E2], ranging from less than a kilometre to hundreds of kilometres in size, surrounded by ice.
+HAS_FORM(e1,e2)
+Comment:
+
+37	[E1]Jökulhlaups[/E1] are [E2]outbursts[/E2] of meltwater stored beneath a glacier or ice sheet as a subglacial lake.
+HAS_LOCATION(e1,e2)
+Comment:
+
+39	[E1]Karst springs[/E1] are [E2]locations[/E2] where groundwater emerges from the limestone and flows across the surface forming a stream or contained pool.
+HAS_LOCATION(e1,e2) HAS_RESULT(e1,e2)
+Comment:
+
+40	[E1]Zeolites[/E1] are silicate [E2]minerals[/E2] that typically form during low-grade metamorphism of volcanic rocks.
+HAS_CAUSE(e1,e2)
+Comment:
+
+41	[E1]Geomorphic generation[/E1] is a part of the [E2]classification[/E2] that allows for the recognition of more than one geomorphic process type or landform at any given location due to process overprinting.
+HAS_CAUSE(e1,e2) HAS_RESULT(e1,e2)
+Comment:
+
+43	[E1]Tephra[/E1] is a term covering three types of pyroclastic [E2]material[/E2] of differing grain size.
+HAS_ATTRIBUTE(e1,e2)
+Comment:
+
+45	[E1]Carbonation[/E1] is a [E2]step[/E2] in the complex weathering of many other minerals, such as in the hydrolysis of feldspar.
+HAS_RESULT(e1,e2)
+Comment:
+
+49	A [E1]riegel[/E1] is a [E2]rock barrier[/E2] that sits across a valley, often where a band of hard rock outcrops.
+HAS_LOCATION(e1,e2)
+Comment:
+
+50	A [E1]sea cave[/E1] is a [E2]hollow[/E2] excavated by waves in a zone of weakness on a cliff.
+HAS_LOCATION(e1,e2) HAS_CAUSE(e1,e2)
+Comment:
+
+51	A [E1]tidewater glacier[/E1] is a [E2]glacier[/E2] that terminates in the sea, where it usually ends in an ice cliff from which icebergs are discharged.
+HAS_LOCATION(e1,e2) HAS_RESULT(e1,e2)
+Comment:
+
+52	A [E1]light year[/E1] is a [E2]unit of length[/E2], equal to just under 10 trillion km.
+DEFINED_AS(e1,e2)
+Comment:
+
+53	[E1]Moraine[/E1] is a [E2]material[/E2] transported by a glacier and then deposited.
+HAS_CAUSE(e1,e2)
+Comment:
+
+54	[E1]Orogeny[/E1] is a mountain building [E2]process[/E2] whereas epeirogeny is continental building process.
+HAS_RESULT(e1,e2)
+Comment:
+
+56	The [E1]profilometer[/E1] is a [E2]comb[/E2] equipped with fine, closely spaced teeth that advance or retreat through the housing when depressed against a rough surface.
+HAS_ATTRIBUTE(e1,e2)
+Comment:
+
+57	[E1]Amino-acid geochronology[/E1] is a relative-age [E2]dating technique[/E2] based on the premise that proteins in bones and shells are affected by a number of chemical reactions that are partly time-dependent.
+DEFINED_AS(e1,e2) HAS_ATTRIBUTE(e1,e2)
+Comment:
+
+58	An [E1]anabranching alluvial river[/E1] is a [E2]system[/E2] of mul tiple channels characterized by vegetated or oth erwise stable alluvial islands that divide flows at discharges up to bankfull.
+HAS_FORM(e1,e2) HAS_CAUSE(e1,e2)
+Comment:
+
+59	An [E1]earthquake[/E1] is a [E2]vibration[/E2] or oscillation of the surface of the earth caused by sudden release of enormous pressure.
+HAS_LOCATION(e1,e2) HAS_CAUSE(e1,e2)
+Comment:
+
+61	A [E1]tsunami[/E1] is a [E2]series of ocean waves[/E2] of extremely long wave length and period that is generated by an impulsive disturbance that displaces the water, rather than by the wind.
+HAS_CAUSE(e1,e2) HAS_ATTRIBUTE(e1,e2)
+Comment:
+
+63	[E1]Magnitude[/E1] is a [E2]measure[/E2] of the amount of energy released by an earthquake, and it is proportional to the area of the rupture surface and to the amount of displacement.
+HAS_ATTRIBUTE(e1,e2)
+Comment:
+
+64	A [E1]mantle plume[/E1] is a [E2]column[/E2] of hot rock (not magma) that ascends toward the surface from the lowermantle.
+HAS_LOCATION(e1,e2)
+Comment:
+
+65	[E1]Tidal flats[/E1] are [E2]banks[/E2] of mud or sand that are exposed at low tide.
+HAS_FORM(e1,e2)
+Comment:
+
+67	[E1]Caldera[/E1] is a large [E2]crater[/E2] or depression resulting from a powerful volcanic explosion or the collapse of the central part of a volcano.
+HAS_CAUSE(e1,e2)
+Comment:
+
+68	[E1]Catchment[/E1] is an [E2]area[/E2] that is drained by a river and defined by the surrounding watershed.
+HAS_CAUSE(e1,e2)
+Comment:
+
+69	[E1]Chute[/E1] is a narrow [E2]channel[/E2] with a swift current, applied to rivers, the straits between the mainland and islands, and to furrows produced by avalanches on hill slopes.
+HAS_LOCATION(e1,e2)
+Comment:
+
+71	[E1]Corestone[/E1] is a spheroidal [E2]boulder[/E2] of relatively unweathered rock surrounded by saprolite and formed by sub-surface weathering of a joint block.
+HAS_LOCATION(e1,e2) HAS_FORM(e1,e2) HAS_CAUSE(e1,e2)
+Comment:
+
+72	[E1]Corrasion[/E1] is the mechanical [E2]erosion[/E2] of rock surfaces by the impact of moving debris.
+HAS_CAUSE(e1,e2)
+Comment:
+
+74	[E1]Daya[/E1] is a shallow [E2]depression[/E2] found primarily in areas underlain by limestone bedrock or calcrete as a result of solution.
+HAS_LOCATION(e1,e2) HAS_CAUSE(e1,e2)
+Comment:
+
+75	[E1]De Geer Moraine[/E1] is a glacial [E2]landform[/E2] consisting of swarms of small ridges oriented perpendicular to the ice flow direction.
+HAS_FORM(e1,e2)
+Comment:
+
+76	[E1]Dreikanter[/E1] is a shaped [E2]pebble[/E2] found on the surface in desert regions and periglacial areas with three distinct facets on its upper surface as a result of wind abrasion.
+HAS_LOCATION(e1,e2) HAS_FORM(e1,e2) HAS_CAUSE(e1,e2)
+Comment:
+
+77	[E1]Drift ice[/E1] is any type of floating [E2]ice[/E2] that has drifted from its point of origin and broken into pieces small enough for a ship to sail through.
+HAS_CAUSE(e1,e2) HAS_ATTRIBUTE(e1,e2) HAS_RESULT(e1,e2)
+Comment:
+
+79	[E1]Fiard[/E1] is a coastal [E2]inlet[/E2] produced by the drowning of an undulating landscape of shallow valleys and low interfluves.
+HAS_LOCATION(e1,e2) HAS_CAUSE(e1,e2)
+Comment:
+
+80	[E1]Foreshore[/E1] is the part of a [E2]coast[/E2] lying between the lowest low-water line and the average high-water mark.
+HAS_LOCATION(e1,e2)
+Comment:
+
+81	[E1]Aiguille[/E1] is a sharply pointed [E2]rock outcrop[/E2] or peak, very often produced by intense frost action in mountainous regions, such as the Alps.
+HAS_LOCATION(e1,e2) HAS_FORM(e1,e2) HAS_CAUSE(e1,e2)
+Comment:
+
+82	[E1]Dissolution[/E1] is the [E2]process[/E2] whereby a rock, or parts of a rock, combine with water to form a solution.
+HAS_RESULT(e1,e2)
+Comment:
+
+83	[E1]Dome dune[/E1] is a low, circular or oval [E2]mound[/E2] formed where dune height is inhibited by unobstructed strong winds.
+HAS_LOCATION(e1,e2) HAS_FORM(e1,e2)
+Comment:
+
+84	[E1]Estuary[/E1] is the seaward [E2]end of a river[/E2], opening towards the sea, typically through a funnel-shaped inlet, and usually subject to tidal movements and incursions of salt water from the sea.
+HAS_LOCATION(e1,e2) HAS_FORM(e1,e2)
+Comment:
+
+85	[E1]Feeder beach[/E1] is a [E2]beach[/E2] that is artificially widened and nourishes downdrift beaches by natural littoral currents or forces.
+HAS_FORM(e1,e2)
+Comment:
+
+86	[E1]Flash[/E1] is a [E2]depression[/E2] formed by subsidence, particularly as a result of the solution of evaporite beds.
+HAS_CAUSE(e1,e2)
+Comment:
+
+87	[E1]Floodplain[/E1] is a relatively flat alluvial [E2]landform[/E2], constructed largely by the flow regime of the present river and subject to flooding.
+HAS_CAUSE(e1,e2) HAS_ATTRIBUTE(e1,e2)
+Comment:
+
+88	[E1]Terracette[/E1] is a small [E2]terrace[/E2] that forms a step on a hillside. They often occur in near parallel series running approximately along the contours of a hillslope.
+HAS_LOCATION(e1,e2) HAS_FORM(e1,e2)
+Comment:
+
+90	[E1]Rills[/E1] are tiny hillside [E2]channels[/E2] a few centimetres wide and deep that are cut by ephemeral rivulets.
+HAS_LOCATION(e1,e2) HAS_CAUSE(e1,e2)
+Comment:
+
+91	[E1]Cirques[/E1] are typically armchair-shaped [E2]hollows[/E2] that form in mountainous terrain.
+HAS_LOCATION(e1,e2) HAS_FORM(e1,e2)
+Comment:
+
+92	[E1]Lunate features[/E1] are [E2]fractures[/E2] shaped like crescents with the concavity facing the direction of ice flow.
+HAS_FORM(e1,e2)
+Comment:
+
+93	[E1]Geer moraines[/E1] or washboard moraines are series of small and roughly parallel [E2]ridges of till[/E2] that are ordinarily associated with lakes or former lakes.
+HAS_FORM(e1,e2) HAS_CAUSE(e1,e2)
+Comment:
+
+94	Geer moraines or [E1]washboard moraines[/E1] are series of small and roughly parallel [E2]ridges of till[/E2] that are ordinarily associated with lakes or former lakes.
+HAS_FORM(e1,e2) HAS_CAUSE(e1,e2)
+Comment:
+
+95	[E1]Eskers[/E1] are the chief [E2]landform[/E2] created by subglacial meltwater and form by the infilling of subglacial or englacial channels or by sedimentation in supraglacial channels.
+HAS_CAUSE(e1,e2)
+Comment:
+
+96	[E1]Icing blisters[/E1] are [E2]ice mounds[/E2] created by groundwater injected at high pressure between icing layers.
+HAS_CAUSE(e1,e2)
+Comment:
+
+97	[E1]Thermokarst[/E1] is irregular [E2]terrain[/E2] characterized by topographic depressions with hummocks between them.
+HAS_FORM(e1,e2)
+Comment:
+
+98	[E1]Solifluction[/E1] is an important periglacial [E2]process[/E2] and forms sheets, lobes, terraces, and ploughing boulders.
+HAS_LOCATION(e1,e2) HAS_RESULT(e1,e2)
+Comment:
+
+99	[E1]Dunes[/E1] are collections of loose [E2]sand[/E2] built piecemeal by the wind.
+HAS_CAUSE(e1,e2)
+Comment:
+
+100	[E1]Blowouts[/E1] are [E2]depressions[/E2] created by the deflation of loose sand partly bound by plant roots.
+HAS_CAUSE(e1,e2)
+Comment:
+

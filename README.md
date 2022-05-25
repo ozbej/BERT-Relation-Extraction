@@ -8,4 +8,4 @@ This is a fork project of [BERT-Relation-Extraction](https://github.com/plkmo/BE
 3. Run `python -m spacy download en` and `python -m spacy download en_core_web_lg`
 
 ## Run the model
-`python main_task.py --detect_entities 0 --annotated 1 --train_data "train_path.txt" --test_data "test_path.txt" --infer_data "infer_data.txt"`
+`python main_task.py --detect_entities 0 --annotated 1 --train_data "./data/termframe_train_oversampled.txt" --test_data "./data/termframe_additional_test.txt" --infer_data "./data/termframe_additional_test_v2.txt"`
